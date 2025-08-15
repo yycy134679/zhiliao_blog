@@ -1,3 +1,8 @@
 body{
     background-color: rgba(0, 0, 0, 0.1);
 }
+
+/* 最外层容器宽度 */
+.container {
+    max-width: 1000px;
+}
