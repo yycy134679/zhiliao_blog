@@ -1,105 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>知了博客</title>
-        <link rel="stylesheet" href="{% static 'bootstrap5/bootstrap.min.css' %}" />
-        <script src="{% static 'bootstrap5/popper.min.js' %}"></script>
-        <script src="{% static 'bootstrap5/bootstrap.min.js' %}"></script>
-        <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    </head>
-    <body>
-        {% comment %} 导航栏 {% endcomment %}
-        <header class="p-3 text-bg-light border-bottom mb-3">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/"
-                       class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                        <img src="{% static 'images/logo.png' %}" alt="logo" height="40" />
-                    </a>
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li>
-                            <a href="#" class="nav-link px-2 text-secondary">首页</a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link px-2 text-secondary">发布博客</a>
-                        </li>
-                    </ul>
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                        <input type="search"
-                               class="form-control form-control-dark text-bg-light"
-                               placeholder="搜索..."
-                               aria-label="Search" />
-                    </form>
-                    <div class="text-end">
-                        <button type="button" class="btn btn-outline-primary me-2">登录</button>
-                        <button type="button" class="btn btn-primary">注册</button>
-                    </div>
-                </div>
-            </div>
-        </header>
-        {% comment %} 主体 {% endcomment %}
-        <main class="container bg-white p-3 rounded">
-            <h1>Django从零基础到项目实战</h1>
-            <hr />
-            <div class="ms-2">
-                <img src="{% static 'images/touxiang.jpg' %}"
-                     class="rounded-circle"
-                     width="30"
-                     height="30"
-                     alt="">
-                <span class="ms-2">知了课堂</span>
-                <span class="ms-2">发布时间：2023-03-15</span>
-                <hr />
-                <div class="py-2">
-                    <p>博客详情</p>
-                </div>
-                <hr />
+{% extends "base.html" %}
+{% block title %}
+    博客详情
+{% endblock title %}
+{% block main %}
+    <h1>Django从零基础到项目实战</h1>
+    <hr />
+    <div class="ms-2">
+        <img src="{% static 'images/touxiang.jpg' %}"
+             class="rounded-circle"
+             width="30"
+             height="30"
+             alt="">
+        <span class="ms-2">知了课堂</span>
+        <span class="ms-2">发布时间：2023-03-15</span>
+        <hr />
+        <div class="py-2">
+            <p>博客详情</p>
+        </div>
+        <hr />
+        <div>
+            <h3>评论（10）</h3>
+            <form action="" method="post">
                 <div>
-                    <h3>评论（10）</h3>
-                    <form action="" method="post">
-                        <div>
-                            <textarea name="content" id="content" class="form-control" rows="3"></textarea>
-                        </div>
-                        <div class="text-end">
-                            <button type="button" class="btn btn-primary mt-2">提交</button>
-                        </div>
-                    </form>
+                    <textarea name="content" id="content" class="form-control" rows="3"></textarea>
                 </div>
-                <hr />
-            </div>
-            <div class="mt-2 ">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item mb-3">
-                        <div class="d-flex justify-content-between">
-                            <div class="user_info">
-                                <img src="{% static 'images/touxiang.jpg' %}"
-                                     class="rounded-circle"
-                                     width="40"
-                                     height="40"
-                                     alt="">
-                                <span class="ms-2">半杯无糖</span>
-                            </div>
-                            <div class="comment_time p-2">2023-03-15</div>
-                        </div>
-                        <div class="comment_content mt-3">这是评论内容</div>
-                    </li>
-                    <li class="list-group-item mb-3">
-                        <div class="d-flex justify-content-between">
-                            <div class="user_info">
-                                <img src="{% static 'images/touxiang.jpg' %}"
-                                     class="rounded-circle"
-                                     width="40"
-                                     height="40"
-                                     alt="">
-                                <span class="ms-2">半杯无糖</span>
-                            </div>
-                            <div class="comment_time p-2">2023-03-15</div>
-                        </div>
-                        <div class="comment_content mt-3">这是评论内容</div>
-                    </li>
-                </ul>
-            </div>
-        </main>
-    </body>
-</html>
+                <div class="text-end">
+                    <button type="button" class="btn btn-primary mt-2">提交</button>
+                </div>
+            </form>
+        </div>
+        <hr />
+    </div>
+    <div class="mt-2 ">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item mb-3">
+                <div class="d-flex justify-content-between">
+                    <div class="user_info">
+                        <img src="{% static 'images/touxiang.jpg' %}"
+                             class="rounded-circle"
+                             width="40"
+                             height="40"
+                             alt="">
+                        <span class="ms-2">半杯无糖</span>
+                    </div>
+                    <div class="comment_time p-2">2023-03-15</div>
+                </div>
+                <div class="comment_content mt-3">这是评论内容</div>
+            </li>
+            <li class="list-group-item mb-3">
+                <div class="d-flex justify-content-between">
+                    <div class="user_info">
+                        <img src="{% static 'images/touxiang.jpg' %}"
+                             class="rounded-circle"
+                             width="40"
+                             height="40"
+                             alt="">
+                        <span class="ms-2">半杯无糖</span>
+                    </div>
+                    <div class="comment_time p-2">2023-03-15</div>
+                </div>
+                <div class="comment_content mt-3">这是评论内容</div>
+            </li>
+        </ul>
+    </div>
+{% endblock main %}
