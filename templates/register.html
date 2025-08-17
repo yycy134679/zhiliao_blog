@@ -2,6 +2,10 @@
 {% block title %}
     注册
 {% endblock title %}
+{% block head %}
+    <script src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/register.js' %}"></script>
+{% endblock head %}
 {% block main %}
     <div style="width: 330px" class="m-auto">
         <h1>注册</h1>
@@ -19,7 +23,7 @@
                        class="form-control"
                        placeholder="请输入邮箱验证码"
                        aria-describedby="basic-addon2" />
-                <span class="input-group-text">获取验证码</span>
+                <span class="input-group-text" id="captcha-btn">获取验证码</span>
             </div>
             <div class="mt-2">
                 <label for="password" class="form-label">密码</label>
