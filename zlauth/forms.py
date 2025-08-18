@@ -63,3 +63,15 @@ class RegisterForm(forms.Form):
         if password != password_confirm:
             raise forms.ValidationError("密码不一致")
         return cleaned_data
+
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(
+        error_messages={"required": "邮箱不能为空", "invalid": "邮箱格式不正确"}
+    )
+    password = forms.CharField(
+        min_length=6,
+        max_length=20,
+        error_messages={"required": "密码不能为空"},
+    )
+    remember = forms.IntegerField(required=False)

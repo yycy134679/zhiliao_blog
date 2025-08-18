@@ -1,20 +1,37 @@
 import random, string
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 from .models import Captcha
 
 User = get_user_model()
 
 
+@require_http_methods(["GET", "POST"])
 def login_view(request):
-    return render(request, "login.html")
+    if request.method == "GET":
+        return render(request, "login.html")
+    else:
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+            remember = form.cleaned_data.get("remember")
+            user = User.objects.filter(email=email).first()
+            if user and user.check_password(password):
+                login(request, user)
+                if not remember:
+                    request.session.set_expiry(0)
+                return redirect("/")
+            else:
+                print("邮箱或密码错误")
+                return redirect(reverse("zlauth:login"))
 
 
 @require_http_methods(["GET", "POST"])
