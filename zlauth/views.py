@@ -1,6 +1,6 @@
 import random, string
 
-from django.contrib.auth import get_user_model, login
+from django.contrib.auth import get_user_model, login, logout
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
@@ -32,6 +32,11 @@ def login_view(request):
             else:
                 print("邮箱或密码错误")
                 return redirect(reverse("zlauth:login"))
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("/")
 
 
 @require_http_methods(["GET", "POST"])
