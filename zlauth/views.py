@@ -1,17 +1,37 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-import random
-import string
+import random, string
+
+from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from django.views.decorators.http import require_http_methods
+
+from .forms import RegisterForm
 from .models import Captcha
+
+User = get_user_model()
 
 
 def login_view(request):
     return render(request, "login.html")
 
 
+@require_http_methods(["GET", "POST"])
 def register_view(request):
-    return render(request, "register.html")
+    if request.method == "GET":
+        return render(request, "register.html")
+    else:
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get("username")
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+            User.objects.create_user(username=username, email=email, password=password)
+            return redirect(reverse("zlauth:login"))
+        else:
+            print(form.errors)
+            return render(request, "register.html", {"form": form})
 
 
 def send_email_captcha(request):

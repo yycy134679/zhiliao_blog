@@ -10,6 +10,7 @@
     <div style="width: 330px" class="m-auto">
         <h1>注册</h1>
         <form action="" method="post">
+            {% csrf_token %}
             <div class="mb-1">
                 <label for="username" class="form-label">用户名</label>
                 <input type="text" name="username" id="username" class="form-control" />
@@ -20,6 +21,8 @@
             </div>
             <div class="input-group mt-2">
                 <input type="text"
+                       name="captcha"
+                       id="captcha"
                        class="form-control"
                        placeholder="请输入邮箱验证码"
                        aria-describedby="basic-addon2" />
@@ -30,8 +33,11 @@
                 <input type="password" name="password" id="password" class="form-control" />
             </div>
             <div class="mt-2">
-                <label for="password" class="form-label">确认密码</label>
-                <input type="password" name="password" id="password" class="form-control" />
+                <label for="password_confirm" class="form-label">确认密码</label>
+                <input type="password"
+                       name="password_confirm"
+                       id="password_confirm"
+                       class="form-control" />
             </div>
             <div class="mt-3 mb-3">
                 <button type="submit" class="btn btn-primary w-100">注册</button>
